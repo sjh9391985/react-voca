@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import useFetch from "../hooks/useFetch"
 
+export interface IDay{
+    id : number;
+    day : number
+}
+
 export default function DayList(){
     
     //const [days, setDays] = useState([]);
     // const [count, setCount] = useState(0);
-    const days = useFetch('http://localhost:3002/days')
+    const days : IDay[] = useFetch('http://localhost:3002/days')
 
     // useEffect(() => {
     //     fetch('http://localhost:3002/days')

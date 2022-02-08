@@ -1,15 +1,16 @@
 import useFetch from "../hooks/useFetch"
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router";
+import { IDay } from "./DayList";
 
 export default function CreateWord(){
 
-    const days = useFetch("http://localhost:3002/days");
+    const days : IDay[] = useFetch("http://localhost:3002/days");
     console.log(days)
 
     const navigate = useNavigate();
 
-    function onSubmit(e){
+    function onSubmit(e : React.FormEvent){
         e.preventDefault();
 
         console.log(engRef.current.value)
@@ -39,15 +40,15 @@ export default function CreateWord(){
                 korRef.current.value = "";
                 
             }
-            else if(res.status === "400"){
+            else if(res.status === 400){
                 alert("에러입니다!")
             }
         })
     }
 
-    const engRef = useRef(null);
-    const korRef = useRef(null);
-    const dayRef = useRef(null);
+    const engRef = useRef<HTMLInputElement>(null);
+    const korRef = useRef<HTMLInputElement>(null);
+    const dayRef = useRef<HTMLSelectElement>(null);
 
 
     return(

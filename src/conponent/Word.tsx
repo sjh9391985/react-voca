@@ -1,6 +1,19 @@
 import { useState } from "react"
 
-export default function Word({word}){
+interface IProps {
+    word : IWord;
+}
+
+// 여러개의 property에 각각 다른 타입을 사용할 수 있습니다.
+export interface IWord {
+    day: string;
+    eng: string;
+    kor: string;
+    isDone: boolean;
+    id: number;
+}
+
+export default function Word({word} : IProps){
     
     const [words, setWords] = useState(word);
     const [isShow, setIsShow] = useState(false);
@@ -40,7 +53,7 @@ export default function Word({word}){
         })
         .then(res => {
             if(res.ok){
-                setWords({id:0})
+                setWords({ ...word, id : 0 })
             }
         })
     }
